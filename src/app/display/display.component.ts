@@ -13,6 +13,10 @@ export class DisplayComponent implements OnInit {
   message = '';
   points = 0;
 
+  boom = this.createAudio('boom');
+  buzz = this.createAudio('buzz');
+  click = this.createAudio('click');
+  ding = this.createAudio('ding');
   constructor() { }
 
   buildLetterGroup() {
@@ -81,7 +85,7 @@ export class DisplayComponent implements OnInit {
   letterClicked(letter) {
 
     // check to see if letter has been used
-
+    this.click.play();
     if ( ! this.letterUsed(letter) ) {
       // mark letter as used
       this.useLetter(letter);
@@ -115,20 +119,52 @@ export class DisplayComponent implements OnInit {
 
       // word has not been found so lets check if its on the list
       if ( this.checkWord(this.word) >= 0 ) {
+        this.ding.play();
         this.points = this.points + (this.word.length * 100);
         this.message = 'Yeah!';
         this.words_found.push(this.word);
         // check for winner
         if ( this.words_found.length === this.words.length ) {
+          this.boom.play();
           this.message = 'You Win!';
         }
 
       } else {
+        this.buzz.play();
         this.message = this.word + ' is not in the list!';
       }
 
     }
     this.useLettersClear();
+  }
+
+  createAudio(name) {
+    const audio = new Audio();
+
+    if (name === 'buzz') {
+      audio.src = '../../assets/buzz.mp3';
+      audio.load();
+      return audio;
+    }
+
+    if (name === 'boom') {
+      audio.src = '../../assets/boom.mp3';
+      audio.load();
+      return audio;
+    }
+
+    if (name === 'click') {
+      audio.src = '../../assets/click.mp3';
+      audio.load();
+      return audio;
+    }
+
+    if (name === 'ding') {
+      audio.src = '../../assets/ding.mp3';
+      audio.load();
+      return audio;
+    }
+
   }
 
 
