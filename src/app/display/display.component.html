@@ -1,0 +1,48 @@
+<div class="area">
+  <div class="row">
+
+    
+
+    <div class="area col-md-8">
+
+      <div class="area col-md-12">      
+          <div class="word-container">Score: {{ points }}</div>
+        </div>
+
+      <div class="word-display area col-md-9">
+          <div class="word-container">{{ word | uppercase }}</div>
+        </div>
+
+      <div class="area col-md-12 letter_container">
+        <button
+          (click)="letterClicked(letter)"
+          *ngFor="let letter of letters"
+          class="btn btn-primary btn-lg"
+          [class]="'tile ' + letter.used"
+        >{{ letter.name | uppercase }}</button>
+        &nbsp;&nbsp;
+        <button
+          (click)="submitClicked()"
+          
+          class="btn btn-primary btn-lg"
+        >Submit</button>
+        <br> <br>
+        <p>{{ message }}</p>
+      </div>
+    </div>
+    <div class="area col-md-4">
+      <div>
+          Found {{ words_found.length }} of {{ words.length }}
+      </div>
+      <ul class="list-group">
+        <li *ngFor="let word_found of words_found" class="list-group-item">{{ word_found | uppercase }}</li>
+      </ul>
+    </div>
+
+    
+  
+ 
+
+  </div>
+  
+</div>

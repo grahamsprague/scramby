@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.word-container{
+    height: 40px;
+    font-size: 30px;
+    font-weight: 700;
+    
+}
+
+.word-display{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    margin: 20px;
+    background-color: white;
+}
+
+.tile {
+    width: 50px;
+    height: 50px;
+    border: 2px solid lightgray;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+    
+    border-radius: 5px;
+
+}
+
+.tile.false{
+    background-color: white;
+    box-shadow: 2px 2px #ccc;
+}
+
+.tile.true {
+    background-color: darkgray;
+    box-shadow: none;
+    color: #ccc;
+}
