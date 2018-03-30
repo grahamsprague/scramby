@@ -12,6 +12,7 @@ export class DisplayComponent implements OnInit {
   words_found = [];
   message = '';
   points = 0;
+  points_add = '';
 
   boom = this.createAudio('boom');
   buzz = this.createAudio('buzz');
@@ -118,13 +119,13 @@ export class DisplayComponent implements OnInit {
     console.log( this.checkWord(this.word) );
 
     if ( this.checkWordsFound(this.word) >= 0 ) {
-      this.message = 'You already found this word!';
+      this.message = '"' + this.word.toUpperCase() + '" already found!';
     } else {
 
       // word has not been found so lets check if its on the list
       if ( this.checkWord(this.word) >= 0 ) {
         this.ding.play();
-        this.points = this.points + (this.word.length * 100);
+        this.points = this.points + (this.word.length * 100) + this.word.length;
         this.message = 'You got one!';
         this.words_found.push(this.word);
         // check for winner

@@ -20,7 +20,7 @@ h1{
 .word-display{
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 200px;
+    width: 250px;
     margin-left: 15px;
     margin-right: 50px;
     background-color: white;
@@ -41,7 +41,7 @@ h1{
 
 .tile.false{
     background-color: white;
-    box-shadow: 2px 2px #ccc;
+    box-shadow: 1px 1px #ccc;
 }
 
 .tile.true {

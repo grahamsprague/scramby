@@ -3,10 +3,10 @@
 
 
 
-    <div class="area col-md-6">
+    <div class="area col-md-5">
 
       <div class="area col-md-12">
-        <div class="word-container">Score: {{ points }}</div>
+        <div class="word-container">Score: {{ points }} </div>
       </div>
 
       <div class="area col-md-12 message">
@@ -20,16 +20,18 @@
           <br>
         <button (click)="letterClicked(letter)" *ngFor="let letter of letters" class="btn btn-primary btn-lg" [class]="'tile ' + letter.used">{{ letter.name | uppercase }}</button>
         &nbsp;&nbsp;
-        <button (click)="submitClicked()" class="btn btn-primary btn-lg">Submit</button>
+        
         <br>
         <br>
-        <button (click)="shuffleLettersClicked()" class="btn btn-primary btn-lg">Shuffle</button>
+        <button (click)="shuffleLettersClicked()" class="btn btn-primary btn-lg "><span class="glyphicon glyphicon-random"> </span> Shuffle</button>
+        &nbsp;&nbsp;&nbsp;
+        <button (click)="submitClicked()" class="btn btn-primary btn-lg">Submit <span class="glyphicon glyphicon-arrow-right"></span></button>
         <br>
         <br>
         
       </div>
     </div>
-    <div class="area col-md-6">
+    <div class="area col-md-7">
       <div>
         Found {{ words_found.length }} of {{ words.length }}
       </div>
