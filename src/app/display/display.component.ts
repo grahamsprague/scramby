@@ -31,6 +31,7 @@ export class DisplayComponent implements OnInit {
 
   buildWordGroup() {
     this.words = [
+      'a',
       'act',
       'acts',
       'at',
@@ -106,6 +107,9 @@ export class DisplayComponent implements OnInit {
     return this.words_found.indexOf(word);
   }
 
+  shuffleLettersClicked() {
+    this.shuffle(this.letters);
+  }
 
   submitClicked() {
     console.log('clear clicked');
@@ -121,7 +125,7 @@ export class DisplayComponent implements OnInit {
       if ( this.checkWord(this.word) >= 0 ) {
         this.ding.play();
         this.points = this.points + (this.word.length * 100);
-        this.message = 'Yeah!';
+        this.message = 'You got one!';
         this.words_found.push(this.word);
         // check for winner
         if ( this.words_found.length === this.words.length ) {
@@ -131,7 +135,7 @@ export class DisplayComponent implements OnInit {
 
       } else {
         this.buzz.play();
-        this.message = this.word + ' is not in the list!';
+        this.message = '"' + this.word.toUpperCase() + '" is not a word!';
       }
 
     }
@@ -165,6 +169,18 @@ export class DisplayComponent implements OnInit {
       return audio;
     }
 
+  }
+
+
+  shuffle (array) {
+    let i = 0, j = 0, temp = null;
+
+    for (i = array.length - 1; i > 0; i -= 1) {
+      j = Math.floor(Math.random() * (i + 1));
+      temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
   }
 
 
