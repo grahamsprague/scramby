@@ -83,9 +83,9 @@ export class DisplayComponent implements OnInit {
   }
 
   letterClicked(letter) {
-
-    // check to see if letter has been used
     this.click.play();
+    // check to see if letter has been used
+
     if ( ! this.letterUsed(letter) ) {
       // mark letter as used
       this.useLetter(letter);
