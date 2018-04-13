@@ -134,8 +134,25 @@ export class DisplayComponent implements OnInit {
         // console.log(this.tl1);
 
           const myscoreitem = document.getElementsByClassName('word-container');
+          const mycontainer = document.getElementsByClassName('well');
           this.tl1.to(myscoreitem, 0, { opacity: 1 } )
-          .from(myscoreitem, .5, { scale: 300, opacity: 0, ease: Power2.easeOut } );
+          .from(myscoreitem, .5, { scale: 300, opacity: 0, ease: Power2.easeOut } )
+          .to(mycontainer, .05, {
+            y: -3,
+            ease: Quad.easeInOut
+          })
+          .to(mycontainer, .05, {
+            repeat: 4,
+            y: 3,
+            yoyo: true,
+            delay: .1,
+            ease: Quad.easeInOut
+          })
+          .to(mycontainer, .1, {
+            x: 0,
+            delay: .1 * 4
+          })
+          ;
 
         // check for winner
         if ( this.words_found.length === this.words.length ) {
@@ -198,6 +215,7 @@ export class DisplayComponent implements OnInit {
     this.buildLetterGroup();
     this.buildWordGroup();
     this.tl1 = new TimelineMax();
+
   }
 
 }
