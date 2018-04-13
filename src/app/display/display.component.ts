@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {TimelineMax} from 'gsap';
+import {Power2} from 'gsap';
 
 @Component({
   selector: 'app-display',
@@ -12,7 +14,8 @@ export class DisplayComponent implements OnInit {
   words_found = [];
   message = '';
   points = 0;
-  points_add = '';
+  points_add = 0;
+  tl1;
 
   boom = this.createAudio('boom');
   buzz = this.createAudio('buzz');
@@ -96,8 +99,6 @@ export class DisplayComponent implements OnInit {
       this.word = this.word + letter.name;
     }
 
-
-
   }
 
   checkWord(word) {
@@ -125,13 +126,22 @@ export class DisplayComponent implements OnInit {
       // word has not been found so lets check if its on the list
       if ( this.checkWord(this.word) >= 0 ) {
         this.ding.play();
-        this.points = this.points + (this.word.length * 100) + this.word.length;
+        this.points_add = (this.word.length * 100) + this.word.length;
+        this.points = this.points + this.points_add;
         this.message = 'You got one!';
         this.words_found.push(this.word);
+
+        // console.log(this.tl1);
+
+          const myscoreitem = document.getElementsByClassName('word-container');
+          this.tl1.to(myscoreitem, 0, { opacity: 1 } )
+          .from(myscoreitem, .5, { scale: 300, opacity: 0, ease: Power2.easeOut } );
+
         // check for winner
         if ( this.words_found.length === this.words.length ) {
           this.boom.play();
           this.message = 'You Win!';
+
         }
 
       } else {
@@ -184,10 +194,10 @@ export class DisplayComponent implements OnInit {
     }
   }
 
-
   ngOnInit() {
     this.buildLetterGroup();
     this.buildWordGroup();
+    this.tl1 = new TimelineMax();
   }
 
 }
